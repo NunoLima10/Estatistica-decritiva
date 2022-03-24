@@ -1,3 +1,6 @@
+DECIMAL_PLACES=2
+
+
 class TableRow():
     def __init__(self,min_value,max_value,id):
         super().__init__()
@@ -10,6 +13,7 @@ class TableRow():
         self.absolute_frequency=0
         self.accumulated_frequency=0
         self.relative_frequency=0
+        self.deviation=0
         
 
     def add_elemente(self,elemente):
@@ -21,3 +25,6 @@ class TableRow():
              
     def set_relative_frequency(self,num):
             self.relative_frequency=round(num*100,2)
+    
+    def set_deviation(self,average):
+        self.deviation=round(abs(self.midpoint-average),2)
