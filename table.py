@@ -1,6 +1,6 @@
 from math import floor
 from table_row import TableRow
-DECIMAL_PLACES=2
+DECIMAL_PLACES=3
 
 class Table():
     def __init__(self,data=[]):
@@ -26,7 +26,7 @@ class Table():
             return 5 if 25>=self.size else self.next_int(self.size**0.5) 
         
     def get_range_num(self)->int:
-            return round(self.max_value-self.mim_value,2)
+            return round(self.max_value-self.mim_value,DECIMAL_PLACES)
         
     def get_amplitude(self)->int:
             return self.next_int(self.range_num/self.class_num)
@@ -68,11 +68,11 @@ class Table():
             order=i*self.size/value_order
             for row in self.table:
                  if order<row.accumulated_frequency:
-                         row=self.table[row.id+1]
+                         row=self.table[row.id]
                          break
 
             prev_accumulated_frequency= 0 if row.id-1==-1 else self.table[row.id-1].accumulated_frequency
-            return round(row.min_value+((order-prev_accumulated_frequency)/row.absolute_frequency)*self.amplitude,2)
+            return round(row.min_value+((order-prev_accumulated_frequency)/row.absolute_frequency)*self.amplitude,DECIMAL_PLACES)
 
     def get_moda(self)->float:
            row=self.get_modal_class()
@@ -80,37 +80,42 @@ class Table():
            next_absolute_frequency= 0 if row.id+1>self.class_num-1 else self.table[row.id+1].absolute_frequency
            delta1=row.absolute_frequency-prev_absolute_frequency
            delta2=row.absolute_frequency-next_absolute_frequency
-           return round(row.min_value+(delta1/(delta1+delta2))*self.amplitude,2)
+           return round(row.min_value+(delta1/(delta1+delta2))*self.amplitude,DECIMAL_PLACES)
 
-    def get_average(self):
+    def get_average(self)->float:
         return self.get_separatrices(2,1) 
 #teste
     def get_mean_deviation(self)->float:
         sum=0
         for row in self.table:sum+=row.deviation*row.absolute_frequency
-        return round(sum/self.size,2)
+        return round(sum/self.size,DECIMAL_PLACES)
 
     def get_variance(self)->float:
         sum=0    
         for row in self.table:sum+=(row.deviation**2)*row.absolute_frequency
-        return round(sum/self.size,2)
+        return round(sum/self.size,DECIMAL_PLACES)
 
     def get_standard_deviation(self)->float:
-        return round(self.get_variance()**0.5,2)
+        return round(self.get_variance()**0.5,DECIMAL_PLACES)
 
-    def get_coefficient_of_variation(self):
-        return round(self.get_standard_deviation()/self.amplitude,2)
+    def get_coefficient_of_variation(self)->float:
+        return round(self.get_standard_deviation()/self.amplitude,DECIMAL_PLACES)
 
-    def get_first_person_coefficient(self):
-        return round((self.average-self.get_moda())/self.get_standard_deviation(),2)
+    def get_first_person_coefficient(self)->float:
+        return round((self.average-self.get_moda())/self.get_standard_deviation(),DECIMAL_PLACES)
 
-    def get_second_person_coefficient(self):
+    def get_second_person_coefficient(self)->float:
         Q1=self.get_separatrices(4)
         Q3=self.get_separatrices(4,3)
-        return round((Q1+Q3-2*self.average)/Q3-Q1,2)
+        return round((Q1+Q3-2*self.average)/Q3-Q1,DECIMAL_PLACES)
 
-    def get_kurtosis(self):
-        pass
+    def get_kurtosis(self)->float:
+        Q1=self.get_separatrices(4)
+        Q3=self.get_separatrices(4,3)
+        P90=self.get_separatrices(100,90)
+        P10=self.get_separatrices(100,10)
+        return round((Q3-Q1)/((P90-P10)*2),DECIMAL_PLACES)
+
     #--------build table------
 
     def init_table(self)->dict:
@@ -150,7 +155,7 @@ class Table():
 
     def print_table(self)->None:
         print("id label |Fi      |Fa      |fi      |xi      |di      |")
-        print("-------------------------------------------------------")
+        print("------------------------------------------------------+")
         for row in self.table:
                 colums=[f"{row.id}-{row.label}",f"{row.absolute_frequency}",f"{row.accumulated_frequency}",f"{row.relative_frequency}%",f"{row.midpoint}",f"{row.deviation}"]
                 
@@ -159,7 +164,7 @@ class Table():
                         print(" "*(8-len(colum)),end="")
                         print("|",end="")
                 print("")
-                print("-------------------------------------------------------")
+                print("------------------------------------------------------+")
 
     def print_frequacy_grafic(self,grafic):
             for i in range(len(grafic)):
@@ -177,3 +182,33 @@ class Table():
             grafic=[[grafic[j][i] for j in range(colum_size)]for i in range(row_size)]
             grafic=[[grafic[-(i+1)][j] for j in range(colum_size)]for i in range(row_size)]
             self.print_frequacy_grafic(grafic)
+
+
+    def table_info(self,requested_info):
+        infos={"K":f"Numero de class= {self.class_num}",
+               "R":f"Range= {self.range_num}",
+               "H":f"Amplitude= {self.amplitude}",
+               "N":f"Tamanho= {self.size}",
+               "M":f"Media= {self.get_separatrices(2)}",
+               "Q1":f"Q1= {self.get_separatrices(4)}",
+               "Q3":f"Q3= {self.get_separatrices(4,3)}",
+               "Mo":f"Moda= {self.get_moda()}",
+               "MoC":f"Class modal= {self.get_modal_class().label}",
+               "Dm":f"Desvio medio= {self.get_mean_deviation()}",
+               "V":f"Variancia= {self.get_variance()}",
+               "Dp":f"Desvio padrao= {self.get_standard_deviation()}",
+               "Cv":f"Coeficente de variacao= {self.get_coefficient_of_variation()}",
+               "1Cp":f"1-Coeficente de Person= {self.get_first_person_coefficient()}",
+               "2Cp":f"2-Coeficente de Person= {self.get_second_person_coefficient()}",
+               "Ck":f"Curtose= {self.get_kurtosis()}"
+        }
+        if requested_info.upper()=="ALL":
+                for key in infos:
+                        print(infos[key])
+                return
+
+        requested_info=requested_info.split(",")
+        for key in  requested_info:
+                print(infos[key]) if  key in infos else print(f"Chave '{key}' nao reconhecido")
+
+        

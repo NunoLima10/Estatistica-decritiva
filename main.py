@@ -11,14 +11,8 @@ def main():
     table1=Table(rol_data1)
     #table1.set_table(talble_data2)
     table1.print_table()
-    print(f"Media-{table1.get_separatrices(2)}")
-    print(f"Moda-{table1.get_moda()}")
-    print(f"Desvio medio-{table1.get_mean_deviation()}")
-    print(f"Variancia-{table1.get_variance()}")
-    print(f"Desvio padrao-{table1.get_standard_deviation()}")
-    print(f"Coeficente de variacao-{table1.get_coefficient_of_variation()}")
-    print(f"1-Coeficente de  Person-{table1.get_first_person_coefficient()}")
-    print(f"2-Coeficente de  Person-{table1.get_second_person_coefficient()}")
+    table1.table_info("all")
+    
    
   
 if __name__=="__main__":
