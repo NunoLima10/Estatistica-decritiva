@@ -18,7 +18,7 @@
 >````
 >table1 = Table(rol_data1)
 >````
-> Caso já tenha os dados numa **distribuição de frequência** você deve criar uma instância vazia da ``Class Table`` e depois passando os dados com o método  ``set_table()`` segue o seguinte exemplo.
+> Caso já tenha os dados numa **distribuição de frequência** você deve criar uma instância vazia da ``Class Table`` e depois passando os dados com o método  ``set_table()`` segue o seguinte exemplo.Ao criar uma instancia vazia você não pode executar métodos da tabela antes de colocar dados nela.
 > ````
 > table1 = Table()
 >table1.set_table(talble_data1)
@@ -38,4 +38,24 @@
 >````
 >table1.table_info("all")
 >````
-
+>Caso queria apenas algumas informações você pode passar  uma string com cada um deles separados por virgulas a ordem não importa.
+>````
+>table1.table_info("K,H,R,N")
+>````
+>A abreviações estão descritas abaixo
+> - "K"   Numero de class
+> - "R"   Range 
+> - "H"   Amplitude
+> - "N"   Tamanho 
+> - "M"   Media
+> - "Q1"  Q1 
+> - "Q3"  Q3
+> - "Mo"  Moda 
+> - "MoC" Class modal
+> - "Dm"  Desvio medio
+> - "V"   Variancia 
+> - "Dp"  Desvio padrao 
+> - "Cv"  Coeficente de variacao
+> - "1Cp" 1-Coeficente de Person 
+> - "2Cp" 2-Coeficente de Person
+> - "Ck"  Curtose
