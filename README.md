@@ -1,10 +1,22 @@
 # Estatistica-decritiva
-## Como usar
+Esse projeto foi desenvolvido com proposito de aprendizagem dos conteúdos da disciplina de Probabilidade e Estatística e engloba 
+apenas a parte de Estatística Descritiva é também para colocar em pratica conceitos de programação orientada a objetos.
+
+O projeto ainda está em desenvolvimento então possui algumas limitações 
+ - Apenas para dados agrupados 
+ - Apenas class com amplitudes iguais
+ 
+Como o propósito é a aprendizagem qualquer duvida ou sugestão para melhorar o código tanto na parte de eficiência ou na legibilidade 
+são aceites, os contatos estão abaixo.
+- contato.paycraft10@gmail.com
+- njlima@uta.cv
+
+# Como utilizar
 
 ### Inserir dados
->Caso seus dados estiverem em **distribuídos de rol** você deve colocar eles numa lista serandam cada elemento por uma virgula como demostrado no exemplo abaixo.
+>Caso seus dados estiverem  **distribuídos em rol** você deve colocar eles numa lista serandam cada elemento por uma virgula como demostrado no exemplo abaixo.
 >
->Embora os dados estejam ordenados não a necessidade de colocar eles ordenados em ordem.
+>Embora os dados estejam ordenados não a necessidade de colocar eles ordenados.
 >````
 >rol_data1 = [50,50,52,53,54,54,55,55,56,56,57,57,57,58,58,58,59,59,60,60,60,60,61,61,62,62,62,63,63,64,65,66,67,68,68,69,70]
 >````
@@ -14,11 +26,11 @@
 > ````
 
 ### Criar uma tabela
->Caso seus dados estiverem em **distribuídos de rol** você deve criar uma instância da ``Class Table`` passando como argumento a variável onde está guardado os dados seguindo o seguinte exemplo. 
+>Caso seus dados estiverem **distribuídos em rol** você deve criar uma instância da ``Class Table`` passando como argumento a variável onde está guardado os dados segue o seguinte exemplo. 
 >````
 >table1 = Table(rol_data1)
 >````
-> Caso já tenha os dados numa **distribuição de frequência** você deve criar uma instância vazia da ``Class Table`` e depois passando os dados com o método  ``set_table()`` segue o seguinte exemplo.Ao criar uma instancia vazia você não pode executar métodos da tabela antes de colocar dados nela.
+> Caso já tenha os dados numa **distribuição de frequência** você deve criar uma instância vazia da ``Class Table`` e depois passando os dados com o método  ``set_table()`` segue o seguinte exemplo,ao criar uma instancia vazia você não pode executar métodos da tabela antes de colocar dados nela.
 > ````
 > table1 = Table()
 >table1.set_table(talble_data1)
@@ -34,11 +46,11 @@
 >table1.generate_frequacy_grafic()
 >````
 >
->Para ver todas as  informações sobre a tabela deve usar o método ``table_info()`` passando como argumento 'all' para ver todas as informações 
+>Para ver todas as informações sobre a tabela deve usar o método ``table_info()`` passando como argumento 'all' para ver todas as informações 
 >````
 >table1.table_info("all")
 >````
->Caso queria apenas algumas informações você pode passar  uma string com cada um deles separados por virgulas a ordem não importa.
+>Caso queria apenas algumas informações você pode passar  uma string com cada um deles separados por virgulas, a ordem não importa.
 >````
 >table1.table_info("K,H,R,N")
 >````
@@ -48,8 +60,8 @@
 > - "H"   Amplitude
 > - "N"   Tamanho 
 > - "M"   Media
-> - "Q1"  Q1 
-> - "Q3"  Q3
+> - "Q1"  1° Quartil 
+> - "Q3"  3° Quartil
 > - "Mo"  Moda 
 > - "MoC" Class modal
 > - "Dm"  Desvio medio
@@ -75,13 +87,13 @@
 >````
 >Q2 = table1.get_separatrices(2)
 >````
->Para calcular o 3° Quartil , o segundo argumento que é 3 será atribuído ao i que será multiplicado pelo n
+>Para calcular o 3° Quartil , o segundo argumento que é 3 será atribuído ao i que será multiplicado pelo n sendo 3*n/4
 >```
 >Q3 = table1.get_separatrices(4,3)
 >````
 > ### Decis
 > 
-> O valor do i irá varia entre 1 a 9, mas o valor que n será divido sempre será 10
+> O valor do i varia entre 1 a 9, mas o valor que n será divido sempre será 10
 >
 >Para calcular o 9° Decil 
 >```
@@ -93,7 +105,7 @@
 >````
 > ### Percentis
 > 
-> O valor do i irá varia entre 1 a 99, mas o valor que n será divido sempre será 100
+> O valor do i varia entre 1 a 99, mas o valor que n será divido sempre será 100
 >
 >Para calcular o 99° percentil 
 >```
@@ -103,6 +115,12 @@
 >```
 >P50 = table1.get_separatrices(100,50)
 >````
+### Ultima atualização 0.0.1
+> - 
+
+### Em  Breve
+> - Suporte a dados  não agrupados 
+> - Suporte a class com amplitudes diferentes
 
 
->
+
