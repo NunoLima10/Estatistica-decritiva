@@ -42,7 +42,7 @@
 >````
 >table1.table_info("K,H,R,N")
 >````
->A abreviações estão descritas abaixo
+>As abreviações estão descritas abaixo
 > - "K"   Numero de class
 > - "R"   Range 
 > - "H"   Amplitude
@@ -59,3 +59,50 @@
 > - "1Cp" 1-Coeficente de Person 
 > - "2Cp" 2-Coeficente de Person
 > - "Ck"  Curtose
+
+---
+>### Separatrizes
+>Para calcular as medidas separatrizes você deve usar o método ``get_separatrices()``
+>
+>O primeiro argumento é o valor que o n será dividido, e o segundo o valor de i que como padrão é igual a 1 caso não seja passado 
+> ### Quartis
+>
+>Para calcular o 1° Quartil, o valor de n será dividido por 4
+>````
+>Q1 = table1.get_separatrices(4)
+>````
+>Para calcular o 2° Quartil, que é igual a media 
+>````
+>Q2 = table1.get_separatrices(2)
+>````
+>Para calcular o 3° Quartil , o segundo argumento que é 3 será atribuído ao i que será multiplicado pelo n
+>```
+>Q3 = table1.get_separatrices(4,3)
+>````
+> ### Decis
+> 
+> O valor do i irá varia entre 1 a 9, mas o valor que n será divido sempre será 10
+>
+>Para calcular o 9° Decil 
+>```
+>D9 = table1.get_separatrices(10,9)
+>````
+>Para calcular o 5° Decil 
+>```
+>D5 = table1.get_separatrices(10,5)
+>````
+> ### Percentis
+> 
+> O valor do i irá varia entre 1 a 99, mas o valor que n será divido sempre será 100
+>
+>Para calcular o 99° percentil 
+>```
+>P99 = table1.get_separatrices(100,99)
+>````
+>Para calcular o 50° percentil 
+>```
+>P50 = table1.get_separatrices(100,50)
+>````
+
+
+>
