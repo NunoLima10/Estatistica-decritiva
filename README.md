@@ -83,7 +83,7 @@ são aceites, os contatos estão abaixo.
 >````
 >Q1 = table1.get_separatrices(4)
 >````
->Para calcular o 2° Quartil, que é igual a media 
+>Para calcular o 2° Quartil, que é igual a mediana 
 >````
 >Q2 = table1.get_separatrices(2)
 >````
