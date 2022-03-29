@@ -16,7 +16,7 @@ class TableRow():
         self.max_value = round(max_value,DECIMAL_PLACES)
         self.label = f"[{ self.min_value}-{self.max_value}["
         self.elements = []
-        self.midpoint = round((self.max_value+self.min_value)/2,DECIMAL_PLACES)
+        self.midpoint = round((self.max_value+self.min_value) / 2,DECIMAL_PLACES)
         self.absolute_frequency = 0
         self.accumulated_frequency = 0
         self.relative_frequency = 0
@@ -33,5 +33,5 @@ class TableRow():
     def set_relative_frequency(self, num)-> None:
             self.relative_frequency = round(num*100,DECIMAL_PLACES)
     
-    def set_deviation(self,average)-> None:
+    def set_deviation(self, average)-> None:
         self.deviation = round(abs(self.midpoint-average),DECIMAL_PLACES)

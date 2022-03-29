@@ -16,15 +16,23 @@ talble_data2 = [[2,4,2],[4,6,4],[6,8,7],[8,10,4],[10,12,3]]
 rol_data4 = [230,235,200,175,170,290,181,245,150,190,120,145,220,225,215,195,200,230,240,200,230,165,265,210,250,210,215,190,270,250]
 
 def main():
-    table1 = Table(rol_data2)
-    #table1.set_table(talble_data2)
+
+    print("Exemplo 1\n\n\n")
+
+    table1 = Table(rol_data1)
     table1.print_table()
-    table1.table_info("K,H,R,N")
+    table1.table_info("all")
     table1.generate_frequacy_grafic()
 
-
     
-   
-  
+    print("\n\n\nExemplo 2\n\n\n")
+
+    table2 = Table()
+    table2.set_table(talble_data2)
+    table2.print_table()
+    table2.table_info("all")
+    table2.generate_frequacy_grafic()
+     
+ 
 if __name__=="__main__":
     main()
