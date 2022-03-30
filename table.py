@@ -76,7 +76,7 @@ class Table():
     def get_separatrices(self, value_order, i=1) -> float:
             order = i * self.size / value_order
             for row in self.table:
-                 if order < row.accumulated_frequency:
+                 if order <= row.accumulated_frequency:
                          row = self.table[row.id]
                          break
 
